@@ -1,0 +1,79 @@
+{% extends '_partials/base.html' %}
+
+{% load static %}
+    
+   {% block body %}
+   {% include '_partials/messages.html' %}
+   <div class="text-center mb-5">
+    <h3 class="mt-2" style="color: chocolate;"> Problem Detail </h3>
+  </div>
+   <div class="row edit-flex">
+    <div class="col-md-5">
+      <div class="side-scroll">
+      <table class="table table-hover  table-output ">
+        <thead>
+           <tr class="">
+              <th scope="col">name</th>
+              <th scope="col">Website</th>
+              <th scope="col">descriptions</th>
+              <th scope="col">Actions</th>
+           </tr>
+        </thead>
+       
+        <tbody >
+           {% for problem in problems %}
+           <tr>
+              <td>{{ problem.name}}</td>
+              <td>
+                 {{problem.website}}
+              </td>
+              <td>
+                {{problem.description}}
+              </td>
+              <td>
+              
+                 <a href="{% url 'problem' problem.pk %}">
+                    <i class="fa fa-eye btn btn-primary"></i>
+                 </a>
+                 <a href="{% url 'update-problem' problem.pk %}">
+                    <i class="fa fa-pencil btn btn-primary"></i>
+                 </a>
+
+              </td>
+
+           </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 content-area">
+ 
+      
+      <div class="card">
+       
+   <div class="card-body" style="background-color: beige ; color: green;">
+    <div style="float: right;">
+      <a href="{% url 'update-problem' problem.pk %}"> <i class="btn btn-primary fa  fa-pencil card-edit-button" ></i></a>
+    </div>
+    <div class="card-title mb-3">
+      <h5 class="card-title" style="color: rgb(75, 110, 5)">{{problem.name}}</h5>
+    </div>
+     <p > problem was created on {{problem.created_at}}</p>
+     <p class="card-text" style="color: rgb(22, 140, 187);"> problem description <span style="color: rgb(241, 46, 46);">{{problem.description}}</span></p>
+     {% if problem.is_completed %}
+     <p > <i class="fa fa-check" style="color: green;"></i> completed at {{problem.updated_at}}</p>
+     {% else %}
+     <p>last updated at <span>{{problem.updated_at}}</span></p>
+     {% endif %}
+     <div class="card-edit-buttons">
+  
+     <a href="{% url 'delete-problem' problem.pk %}" class="btn-2"> <i class="btn btn-danger fa fa-trash card-edit-button"></i></a>
+  </div>
+   </div>
+ </div>
+    </div>
+   </div>
+
+    {% endblock %}

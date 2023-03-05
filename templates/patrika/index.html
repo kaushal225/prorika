@@ -1,0 +1,137 @@
+{% extends '_partials/base.html' %}
+
+{% load static %}
+    
+   {% block body %}
+   <div class="row text-center" style="color:brown;">
+   {% include '_partials/messages.html' %}
+   </div>
+    <h3>List of problems</h3>
+    {% if problems %}
+    <div class="container mt-4">
+      <div class="row">
+          <div class="col-md-8"></div>
+          <div class="col-md-4">
+              <div class="form-group">
+                  <input type="text" class="form-control"  id="searchField"  placeholder="search">
+              </div>
+          </div>
+      </div>
+    </div>
+    <p id="not_found" ></p>
+
+       <table class="table table-hover table-stripped table-output">
+         <thead>
+            <tr class="table-dark">
+               <th scope="col">name</th>
+               <th scope="col" >description</th>
+               <th scope="col" >is completed</th>
+               <th scope="col">Website</th>
+               <th scope="col">Actions</th>
+            </tr>
+         </thead>
+        
+         <tbody >
+            {% for problem in problems %}
+            <tr>
+               <td>{{ problem.name}}</td>
+               <td>{{problem.description}}</td>
+               <td>
+                  
+                {% if problem.is_completed %}
+                  Yes <i class="fa fa-check" style="color:green" ></i>
+               {% else %}
+                 No
+             {% endif %}
+
+
+               </td>
+               <td>
+                  {{problem.website}}
+               </td>
+               <td>
+               
+                  <a href="{% url 'problem' problem.pk %}">
+                     <i class="fa fa-eye btn btn-primary"></i>
+                  </a>
+                  <a href="{% url 'update-problem' problem.pk %}">
+                     <i class="fa fa-pencil btn btn-primary"></i>
+                  </a>
+
+               </td>
+
+            </tr>
+         {% endfor %}
+         </tbody>
+         <tfoot>
+            <tr class="table-info">
+               <th>
+                  <a href="?filter=all" class="links">All count:{{all_count}}</a>
+               </th>
+               <th>
+                  <a href="?filter=incomplete" class="links">
+                     Incompleted:{{incompleted_count}}
+                  </a>
+               </th>
+               <th>
+                  <a href="?filter=complete" class="links">completed:{{completed_count}}</a>
+               </th>
+               <th>
+
+               </th>
+            </tr>
+         </tfoot>
+       </table>
+ 
+       <table class="table table-hover table-stripped search-output">
+         <thead>
+            <tr class="table-dark">
+               <th scope="col">name</th>
+               <th scope="col" >description</th>
+               <th scope="col" >is completed</th>
+               <th scope="col">Website</th>
+               <th scope="col">Actions</th>
+            </tr>
+         </thead>
+        
+         <tbody class="tbody">
+         </tbody>
+         <tfoot>
+            <tr class="table-info">
+               <th>
+                  <a href="?filter=all" class="links">All count:{{all_count}}</a>
+               </th>
+               <th>
+                  <a href="?filter=incomplete" class="links">
+                     Incompleted:{{incompleted_count}}
+                  </a>
+               </th>
+               <th>
+                  <a href="?filter=complete" class="links">completed:{{completed_count}}</a>
+               </th>
+               <th>
+
+               </th>
+            </tr>
+         </tfoot>
+       </table>
+
+    {% else %}
+      <div class="row">
+         <div class="col-md-4">
+         </div>
+        <div class="col-md-4">
+         <div class="container card " style="background-color: rgb(196, 221, 212);">
+            <div  style="color:cadetblue;font-weight:bold" class="mt-3">
+               NO ITEMS YET
+            </div>
+            <p  class="mt-3">you can add your first problem now <a href="{% url 'create-problem' %}">Add New</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-10"></div>
+      </div>
+       
+
+    {% endif %}
+    {% endblock %}

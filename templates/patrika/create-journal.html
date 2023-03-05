@@ -1,0 +1,23 @@
+{% extends '_partials/base.html' %}
+
+{% load static %}
+
+   {% block body %}
+   <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-7">
+         <div class="card" style="background-color: burlywood;">
+            <div class="card-body">
+         <form  method="post" action="{% url 'create-problem' %}">
+            <div class="mb-3">
+            {% csrf_token %}
+             {{form.as_p}}
+             </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+         </div>
+         </div>
+      </div>
+   </div>
+
+    {% endblock %}

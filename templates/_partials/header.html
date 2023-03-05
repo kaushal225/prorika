@@ -1,0 +1,36 @@
+{% load static %}
+
+<ul class="nav nav-pills justify-content-end navigation">
+  <li class="nav-item">
+    <a class="nav-link active home" aria-current="page" href="{% url 'home' %}"><i class="fa fa-home"></i></a>
+  </li>
+
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'create-problem' %}">ADD PROBLEM</a>
+      </li>
+    <div class="dropdown ">
+        <div class="dropdown-p"><i class="fa fa-user"></i> {{request.user.username}} <i class="fa fa-caret-down"></i>
+        <div class="dropdown-item">
+          <form method="post" action="{% url 'logout_user' %}">
+            {% csrf_token %}
+          <input type="submit" value="sign out">
+        </form>
+        </div>
+        </div>
+    </div>
+<!--     <li class="nav-item">
+      <a class="nav-link disabled">LOGOUT</a>
+    </li> -->
+    {% else %}
+ 
+    <li class="nav-item">
+      <a class="nav-link act" aria-current="page" href="{% url 'login' %}">login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link act" area-current="page" href="{% url 'registration' %}">REGISTRATION</a>
+      </li>
+
+    {% endif %}
+   <script src="{% static 'prorika/js/script.js' %}" defer></script>
+  </ul>

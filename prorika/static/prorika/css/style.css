@@ -1,0 +1,85 @@
+.img1{
+    justify-self: start;
+}
+
+.body{
+    background-color: aqua;
+}
+
+.links{
+    text-decoration: none;
+}
+
+.home{
+    position: fixed;
+    top: 5px;
+    left: 5px;
+}
+
+
+
+
+.navigation{
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.control-buttons{
+   display:flex;
+}
+
+.btn-todo-delete{
+   justify-self: start;
+}
+
+.btn-todo-no-delete{
+    justify-self: end;
+}
+
+.registration-form{
+    text-align: center;
+}
+
+
+.registration-text{
+    color: rgb(0, 255, 76);
+    
+}
+
+.dropdown-item{
+    display: none;
+}
+
+.dropdown:hover .dropdown-item{
+    display:block;
+    border: 1px solid rgb(72, 209, 72);
+    border-radius: 10%;
+}
+
+.dropdown-p{
+    text-align: center;
+    color: rgb(0, 110, 255);
+    min-width: 30px;
+    padding: 8px 10px 0 20px;
+    margin: 1px 30px 0px 10px;
+}
+
+.hidden{
+    display: none;
+}
+
+/* .content-area{
+    position: relative;
+} */
+
+.side-scroll{
+    width: 400px;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+.edit-flex{
+    display: flex;
+    flex-wrap: wrap;
+
+}

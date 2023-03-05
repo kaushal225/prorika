@@ -1,0 +1,23 @@
+{% extends '_partials/base.html' %}
+
+{% load static %}
+
+   {% block body %}
+   <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-6">
+         <div class="card" style="color: rgb(67, 105, 8); background-color: beige;">
+            <div class="card-body">
+               <form  method="post" action="{% url 'update-problem' problem.pk %}">
+                  <div class="mb-3">
+                  {% csrf_token %}
+                   {{form.as_p}}
+                   </div>
+                   <button type="submit" class="btn btn-primary">save</button>
+                  </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+    {% endblock %}
